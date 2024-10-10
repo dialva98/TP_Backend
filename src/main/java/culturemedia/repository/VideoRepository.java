@@ -1,6 +1,6 @@
 package culturemedia.repository;
 import java.util.List;
-import culturemedia.model.Video;
+import culturemedia.Video;
 
 public interface VideoRepository {
     List<Video> findAll(); // listar todos los videos
