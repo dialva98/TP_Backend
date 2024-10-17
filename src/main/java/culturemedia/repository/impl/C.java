@@ -29,9 +29,11 @@ public abstract class CulturotecaServiceImpl implements CulturotecaService {
         if (video.duration() <= 0) {
             throw new DurationNotValidException(video.title(), video.duration());
             return.this.video.save(video)
+        }
+    }
 
     @Override
-    public Reproduccion save(Reproduccion reproduccion) {
-                return.this.reproduccion.save(reproduccion)
-            }
-    }
+    public Reproduccion save(Reproduccion reproduccion){
+        return.this.reproduccion.save(reproduccion)
+}
+
