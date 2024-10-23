@@ -1,7 +1,7 @@
 package culturemedia.exception;
 
-public class DurationNotValidException extends CultureMediaException {
+public class DurationNotValidException extends Exception {
     public DurationNotValidException(String title, Double duration) {
-        super("Duración inválida para el video" +title);
+        super(+duration, "No es un duración válida para el video" +title);
     }
 }
