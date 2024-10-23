@@ -1,7 +1,7 @@
 package culturemedia.repository;
-import culturemedia.Reproduccion;
+import culturemedia.model.Reproduccion;
 
 public interface ReproduccionRepository {
-    Reproduccion save(Reproduccion save); // NO idea
+    Reproduccion save(Reproduccion reproduccion); // NO idea
 
 }
