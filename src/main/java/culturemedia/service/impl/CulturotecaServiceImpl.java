@@ -1,6 +1,7 @@
 package culturemedia.service.impl;
 
 import culturemedia.exception.DurationNotValidException;
+import culturemedia.exception.VideoNotFoundException;
 import culturemedia.service.CulturotecaService;
 import java.util.List;
 import culturemedia.model.Video;
@@ -17,7 +18,7 @@ public abstract class CulturotecaServiceImpl implements CulturotecaService {
         this.reproduccion = reproduccion;
     }
 
-    public List<Video> findAll() {
+    public List<Video> findAll() throws VideoNotFoundException {
         return this.video.findAll();
     }
 

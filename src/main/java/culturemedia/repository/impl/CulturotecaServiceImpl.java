@@ -1,36 +1,53 @@
 package culturemedia.repository.impl;
 
-import culturemedia.exception.DurationNotValidException;
 import culturemedia.exception.VideoNotFoundException;
 import culturemedia.repository.CulturotecaService;
+
+import java.util.ArrayList;
 import java.util.List;
 import culturemedia.model.Video;
 import culturemedia.model.Reproduccion;
 import culturemedia.repository.ReproduccionRepository;
 import culturemedia.repository.VideoRepository;
 
-public abstract class CulturotecaServiceImpl implements CulturotecaService {
-    public VideoRepository video;
-    public ReproduccionRepository reproduccion;
+public class CulturotecaServiceImpl implements VideoRepository,ReproduccionRepository,CulturotecaService {
+    private final List<Video> videos;
+    private final List<Reproduccion> reproduccion;
 
-    public CulturotecaServiceImpl(VideoRepository video, ReproduccionRepository reproduccion) {
-        this.video = video;
-        this.reproduccion = reproduccion;
+    public CulturotecaServiceImpl() {
+        videos = new ArrayList<>();
+        this.reproduccion = new ArrayList<>();
     }
 
-    public List<Video> findAll() {
-        return this.video.findAll();
+    @Override
+    public List<Video> findAll() throws VideoNotFoundException {
+        if (videos.isEmpty()) {
+            throw new VideoNotFoundException();
+        }
+        return videos;
     }
 
-    public Video save(@org.jetbrains.annotations.NotNull Video video) throws DurationNotValidException {
-        if (video.duration() <= 0) {
-            throw new DurationNotValidException(video.title(), video.duration());}
-        return this.video.save(video);
+    @Override
+    public Video save(Video video) {
+        this.videos.add(video);
+        return video;
     }
 
-    public Reproduccion save(Reproduccion reproduccion){
-        return this.reproduccion.save(reproduccion);
-}
+    @Override
+    public List<Video> find(String title) {
+        return List.of();
+    }
+
+    @Override
+    public List<Video> find(Double fromDuration, Double toDuration) {
+        return List.of();
+    }
+
+    @Override
+    public Reproduccion save(Reproduccion reproduccion) {
+        this.reproduccion.add(reproduccion);
+        return reproduccion;
+    }
 }
 
 
