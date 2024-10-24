@@ -14,11 +14,8 @@ public abstract class CulturotecaServiceImpl implements CulturotecaService, Vide
     public List<Video> videos;
     public List<Reproduccion> reproduccion;
 
-    public void VideoRepositoryImpl() {
+    public void CulturotecaServiceImpl() {
         videos = new ArrayList<>();
-    }
-
-    public void ReproduccionRepositoryImpl() {
         this.reproduccion = new ArrayList<>();
     }
 
