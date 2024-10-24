@@ -1,36 +1,46 @@
-package culturemedia.service.impl;
 
-import culturemedia.exception.DurationNotValidException;
+
 import culturemedia.exception.VideoNotFoundException;
 import culturemedia.service.CulturotecaService;
+
+import java.util.ArrayList;
 import java.util.List;
 import culturemedia.model.Video;
 import culturemedia.model.Reproduccion;
 import culturemedia.repository.ReproduccionRepository;
 import culturemedia.repository.VideoRepository;
 
-public abstract class CulturotecaServiceImpl implements CulturotecaService {
-    public VideoRepository video;
-    public ReproduccionRepository reproduccion;
+public abstract class CulturotecaServiceImpl implements CulturotecaService, VideoRepository, ReproduccionRepository {
+    public List<Video> videos;
+    public List<Reproduccion> reproduccion;
 
-    public CulturotecaServiceImpl(VideoRepository video, ReproduccionRepository reproduccion) {
-        this.video = video;
-        this.reproduccion = reproduccion;
+    public void VideoRepositoryImpl() {
+        videos = new ArrayList<>();
+    }
+
+    public void ReproduccionRepositoryImpl() {
+        this.reproduccion = new ArrayList<>();
     }
 
     public List<Video> findAll() throws VideoNotFoundException {
-        return this.video.findAll();
+        if (videos.isEmpty()) {
+            throw new VideoNotFoundException();
+        }
+        return videos;
     }
 
-    public Video save(@org.jetbrains.annotations.NotNull Video video) throws DurationNotValidException {
-        if (video.duration() <= 0) {
-            throw new DurationNotValidException(video.title(), video.duration());}
-        return this.video.save(video);
+    public Video save(Video video) {
+        this.videos.add(video);
+        return video;
     }
 
-    public Reproduccion save(Reproduccion reproduccion){
-        return this.reproduccion.save(reproduccion);
+    public Reproduccion save(Reproduccion reproduccion) {
+        this.reproduccion.add(reproduccion);
+        return reproduccion;
+    }
 }
-}
+
+
+
 
 
