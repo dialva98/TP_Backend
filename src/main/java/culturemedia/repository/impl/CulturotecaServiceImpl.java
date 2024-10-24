@@ -30,7 +30,7 @@ public class CulturotecaServiceImpl implements VideoRepository,ReproduccionRepos
     @Override
     public Video save(Video video) {
         this.videos.add(video);
-        return video;
+        return videos;
     }
 
     @Override
