@@ -34,19 +34,37 @@ public class CulturotecaServiceImpl implements VideoRepository,ReproduccionRepos
     }
 
     @Override
-    public List<Video> find(String title) {
-        return List.of();
-    }
-
-    @Override
-    public List<Video> find(Double fromDuration, Double toDuration) {
-        return List.of();
-    }
-
-    @Override
     public Reproduccion save(Reproduccion reproduccion) {
         this.reproduccion.add(reproduccion);
         return reproduccion;
+    }
+
+    @Override
+    public List<Video> find(String title) throws VideoNotFoundException; {
+        List<Video> filteredVideos = new ArrayList<Video>();
+        for ( Video video : videos ) {
+            if(video.title().contains(title)){
+                filteredVideos.add(video);
+            }
+            if (filteredVideos.isEmpty()) {
+                throw new VideoNotFoundException();
+            }
+        }
+        return filteredVideos;
+    }
+
+    @Override
+    public List<Video> find(Double fromDuration, Double toDuration) throws VideoNotFoundException; {
+        List<Video> filteredVideos = new ArrayList<Video>();
+        for ( Video video : videos ) {
+            if(video.duration()> fromDuration && video.duration()< toDuration){
+                filteredVideos.add(video);
+            }
+            if (filteredVideos.isEmpty()) {
+                throw new VideoNotFoundException();
+            }
+        }
+        return filteredVideos;
     }
 }
 
