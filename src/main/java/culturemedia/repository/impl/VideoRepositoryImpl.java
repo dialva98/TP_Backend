@@ -28,9 +28,7 @@ public class VideoRepositoryImpl implements VideoRepository {
 	public List<Video> find(String title) {
 		List<Video> filteredVideos = new ArrayList<Video>();
 		for ( Video video : videos ) {
-			if(video.title().contains(title)){
-				filteredVideos.add(video);
-			}
+			if(video.title().contains(title)) filteredVideos.add(video);
 		}
 		return filteredVideos;
 	}
