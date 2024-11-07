@@ -8,7 +8,9 @@ import culturemedia.model.Video;
 import culturemedia.model.Reproduccion;
 import culturemedia.repository.ReproduccionRepository;
 import culturemedia.repository.VideoRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CulturotecaServiceImpl implements CulturotecaService {
     private VideoRepository videoRepository;
     private final ReproduccionRepository reproduccionRepository;
