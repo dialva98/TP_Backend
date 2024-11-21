@@ -7,6 +7,7 @@ import culturemedia.model.Video;
 import culturemedia.service.CulturotecaService;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class CultureMediaController {
 
